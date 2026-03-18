@@ -15,6 +15,11 @@ export const ar = {
       { value: '1M+', label: 'مستخدم سعيد' },
       { value: '50+', label: 'دول' },
     ],
+    flavors: {
+      original: 'الأصلي',
+      citrus: 'حمضيات',
+      berry: 'توت'
+    }
   },
   info: {
     label: 'لماذا تختار EnDeck',
@@ -63,6 +68,11 @@ export const en = {
       { value: '1M+', label: 'Happy Users' },
       { value: '50+', label: 'Countries' },
     ],
+    flavors: {
+      original: 'Original',
+      citrus: 'Citrus',
+      berry: 'Berry'
+    }
   },
   info: {
     label: 'Why Choose EnDeck',
