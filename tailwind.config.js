@@ -8,9 +8,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'dark-bg': '#0a0a0a',
+        'dark-bg': '#050505',
         'primary-blue': '#0066ff',
         'accent-orange': '#ff6b35',
+        'qwantam-purple': '#4c1d95',
+        'qwantam-pink': '#ec4899',
+        'qwantam-green': '#4ade80',
       },
       fontFamily: {
         'sans': ['Inter', 'Poppins', 'system-ui', 'sans-serif'],

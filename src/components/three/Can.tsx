@@ -73,22 +73,25 @@ export default function Can({ flavor }: CanProps) {
           />
           
           {/* Label / Branding placed via Text directly hovering over the cylinder */}
-          <group position={[0, 0, 1.01]}>
+          <group position={[0, 0, 1.01]} rotation={[0, 0, -Math.PI / 2]}>
             <Text
-              position={[0, 0.5, 0]}
-              fontSize={0.4}
+              position={[0, 0, 0]}
+              fontSize={0.6}
               color="#ffffff"
-              maxWidth={1.5}
+              maxWidth={3}
+              letterSpacing={0.1}
+              outlineWidth={0.02}
+              outlineColor={flavor.accentColor}
               textAlign="center"
               anchorX="center"
               anchorY="middle"
               characters="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!"
             >
-              ENDECK
+              QWANTAM
             </Text>
             <Text
-              position={[0, -0.2, 0]}
-              fontSize={0.25}
+              position={[0, -0.6, 0]}
+              fontSize={0.2}
               color={flavor.accentColor}
               maxWidth={2}
               textAlign="center"
@@ -98,7 +101,7 @@ export default function Can({ flavor }: CanProps) {
               {`⚡ ${t.hero.flavors?.[flavor.nameKey as keyof typeof t.hero.flavors] || flavor.nameKey.toUpperCase()} ⚡`}
             </Text>
             <Text
-              position={[0, -1, 0]}
+              position={[0, -0.9, 0]}
               fontSize={0.15}
               color="#e2e8f0"
               maxWidth={2}

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'EnDeck - The Energy That Keeps You Going',
+  title: 'Qwantam - The Energy That Keeps You Going',
   description: 'Premium energy drink with unmatched power and taste',
   icons: {
     icon: '/favicon.ico',

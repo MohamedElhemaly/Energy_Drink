@@ -12,11 +12,11 @@ export const FLAVORS: Flavor[] = [
   {
     id: 'original',
     nameKey: 'original',
-    baseColor: 'blue-500',
-    gradientFrom: '#1e3a8a', // blue-900
-    gradientTo: '#3b82f6', // blue-500
+    baseColor: 'fuchsia-500',
+    gradientFrom: '#2e1065', // deep purple (fuchsia/violet dark)
+    gradientTo: '#e879f9', // vibrant pink/fuchsia
     textColor: '#ffffff',
-    accentColor: '#f97316', // orange-500
+    accentColor: '#4ade80', // neon green accent for Qwantam logo
   },
   {
     id: 'citrus',

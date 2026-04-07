@@ -24,7 +24,7 @@ export default function InfoColumn({ icon, title, description, delay = 0 }: Info
         {/* Icon */}
         <motion.div
           whileHover={{ scale: 1.1, rotate: 5 }}
-          className="w-16 h-16 rounded-xl bg-gradient-to-br from-blue-500 to-orange-500 flex items-center justify-center text-3xl group-hover:shadow-lg group-hover:shadow-blue-500/50 transition-all"
+          className="w-16 h-16 rounded-xl bg-gradient-to-br from-qwantam-purple to-qwantam-pink flex items-center justify-center text-3xl group-hover:shadow-lg group-hover:shadow-qwantam-pink/50 transition-all"
         >
           {icon}
         </motion.div>
@@ -39,7 +39,7 @@ export default function InfoColumn({ icon, title, description, delay = 0 }: Info
         <motion.div
           initial={{ x: 0 }}
           whileHover={{ x: 5 }}
-          className="flex items-center gap-2 text-blue-500 font-semibold"
+          className="flex items-center gap-2 text-qwantam-pink font-semibold"
         >
           <span>Learn more</span>
           <span>→</span>

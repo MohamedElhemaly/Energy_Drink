@@ -29,10 +29,10 @@ export default function Footer() {
             className="space-y-4"
           >
             <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-orange-500 flex items-center justify-center">
-                <span className="text-white font-bold">⚡</span>
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-qwantam-purple to-qwantam-pink flex items-center justify-center">
+                <span className="text-white font-bold">Q</span>
               </div>
-              <span className="text-xl font-bold gradient-text">EnDeck</span>
+              <span className="text-xl font-bold gradient-text">Qwantam</span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
               {t.footer.tagline}

@@ -10,8 +10,8 @@ export default function InfoSection() {
   return (
     <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden" dir={language === 'ar' ? 'rtl' : 'ltr'}>
       {/* Background elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full mix-blend-multiply filter blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-orange-500/10 rounded-full mix-blend-multiply filter blur-3xl" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-qwantam-purple/20 rounded-full mix-blend-screen filter blur-[100px]" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-qwantam-pink/20 rounded-full mix-blend-screen filter blur-[100px]" />
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Section Header */}
@@ -22,7 +22,7 @@ export default function InfoSection() {
           viewport={{ once: true }}
           className="text-center mb-16 space-y-4"
         >
-          <span className="text-blue-500 font-semibold tracking-widest uppercase text-sm">
+          <span className="text-qwantam-pink font-semibold tracking-widest uppercase text-sm">
             {t.info.label}
           </span>
           <h2 className="text-4xl sm:text-5xl font-bold">
@@ -57,7 +57,7 @@ export default function InfoSection() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 rounded-lg bg-gradient-to-r from-blue-600 to-orange-500 text-white font-bold text-lg hover:shadow-lg hover:shadow-blue-500/50 transition-all"
+            className="px-8 py-4 rounded-lg bg-gradient-to-r from-qwantam-purple to-qwantam-pink text-white font-bold text-lg hover:shadow-lg hover:shadow-qwantam-pink/50 transition-all"
           >
             {t.nav.shopNow}
           </motion.button>

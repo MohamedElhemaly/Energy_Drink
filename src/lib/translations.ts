@@ -9,7 +9,7 @@ export const ar = {
   hero: {
     label: '⚡ طاقة فائقة',
     title: ['الطاقة التي', 'تبقيك مستمراً'],
-    description: 'اختبر الطاقة الفائقة مع EnDeck. مصمم لأداء قمة، مصنوع لك الذي لا يتوقف.',
+    description: 'اختبر الطاقة الفائقة مع Qwantam. مصمم لأداء قمة، مصنوع لك الذي لا يتوقف.',
     stats: [
       { value: '100%', label: 'مكونات طبيعية' },
       { value: '1M+', label: 'مستخدم سعيد' },
@@ -19,12 +19,12 @@ export const ar = {
       original: 'الأصلي',
       citrus: 'حمضيات',
       berry: 'توت'
-    }
+    },
   },
   info: {
-    label: 'لماذا تختار EnDeck',
+    label: 'لماذا تختار Qwantam',
     title: 'اختبر الفرق',
-    description: 'يجمع EnDeck بين الابتكار والجودة والطعم لتقديم أفضل تجربة مشروب طاقة',
+    description: 'يجمع Qwantam بين الابتكار والجودة والطعم لتقديم أفضل تجربة مشروب طاقة',
     columns: [
       {
         icon: '🚫',
@@ -62,7 +62,7 @@ export const en = {
   hero: {
     label: '⚡ Premium Energy',
     title: ['The Energy That', 'Keeps You Going'],
-    description: 'Experience unmatched power with EnDeck. Engineered for peak performance, designed for unstoppable you.',
+    description: 'Experience unmatched power with Qwantam. Engineered for peak performance, designed for unstoppable you.',
     stats: [
       { value: '100%', label: 'Natural Ingredients' },
       { value: '1M+', label: 'Happy Users' },
@@ -72,12 +72,12 @@ export const en = {
       original: 'Original',
       citrus: 'Citrus',
       berry: 'Berry'
-    }
+    },
   },
   info: {
-    label: 'Why Choose EnDeck',
+    label: 'Why Choose Qwantam',
     title: 'Experience the Difference',
-    description: 'EnDeck combines innovation, quality, and taste to deliver the ultimate energy drink experience',
+    description: 'Qwantam combines innovation, quality, and taste to deliver the ultimate energy drink experience',
     columns: [
       {
         icon: '🚫',

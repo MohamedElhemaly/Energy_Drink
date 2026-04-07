@@ -28,10 +28,10 @@ export default function Header() {
           whileHover={{ scale: 1.05 }}
           className="flex items-center gap-2"
         >
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-orange-500 flex items-center justify-center">
-            <span className="text-white font-bold text-lg">⚡</span>
+          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-qwantam-purple to-qwantam-pink flex items-center justify-center">
+            <span className="text-white font-bold text-lg">Q</span>
           </div>
-          <span className="text-2xl font-bold gradient-text">EnDeck</span>
+          <span className="text-2xl font-bold gradient-text">Qwantam</span>
         </motion.div>
 
         {/* Desktop Navigation */}
@@ -65,7 +65,7 @@ export default function Header() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-6 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-orange-500 text-white font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all"
+            className="px-6 py-2 rounded-lg bg-gradient-to-r from-qwantam-purple to-qwantam-pink text-white font-semibold hover:shadow-lg hover:shadow-qwantam-pink/50 transition-all"
           >
             {t.nav.shopNow}
           </motion.button>
@@ -105,7 +105,7 @@ export default function Header() {
                 {item.label}
               </a>
             ))}
-            <button className="w-full px-6 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-orange-500 text-white font-semibold">
+            <button className="w-full px-6 py-2 rounded-lg bg-gradient-to-r from-qwantam-purple to-qwantam-pink text-white font-semibold">
               {t.nav.shopNow}
             </button>
           </div>

@@ -1,178 +1,143 @@
 'use client'
 
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, useMotionValue, useTransform } from 'framer-motion'
+import Image from 'next/image'
 import { useLanguage } from '@/lib/languageContext'
-import { FLAVORS, Flavor } from '@/lib/flavors'
-import dynamic from 'next/dynamic'
-const Scene3D = dynamic(() => import('./three/Scene3D'), { 
-  ssr: false,
-  loading: () => <div className="w-full h-full flex items-center justify-center text-white/50 text-sm animate-pulse tracking-widest">LOADING 3D MODULE...</div>
-})
-import { clsx, type ClassValue } from 'clsx'
-import { twMerge } from 'tailwind-merge'
-
-// Utility for Tailwind
-function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
-}
 
 export default function Hero() {
   const { t, language } = useLanguage()
-  const [activeFlavor, setActiveFlavor] = useState<Flavor>(FLAVORS[0])
+  
+  // 3D Tilt Effect Values
+  const x = useMotionValue(0)
+  const y = useMotionValue(0)
+  const rotateX = useTransform(y, [-200, 200], [15, -15])
+  const rotateY = useTransform(x, [-200, 200], [-15, 15])
+
+  function handleMouseMove(event: React.MouseEvent<HTMLDivElement>) {
+    const rect = event.currentTarget.getBoundingClientRect()
+    x.set(event.clientX - rect.left - rect.width / 2)
+    y.set(event.clientY - rect.top - rect.height / 2)
+  }
+
+  function handleMouseLeave() {
+    x.set(0)
+    y.set(0)
+  }
   
   const container = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
       },
     },
   }
 
   const item = {
     hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+    show: { opacity: 1, y: 0, transition: { duration: 0.8 } },
   }
 
   return (
-    <section 
-      className="relative min-h-screen flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 overflow-hidden transition-colors duration-1000 ease-in-out" 
-      dir={language === 'ar' ? 'rtl' : 'ltr'}
-    >
-      {/* Dynamic Background Glow based on active flavor */}
-      <div 
-        className="absolute top-1/4 left-1/4 w-[40rem] h-[40rem] rounded-full mix-blend-screen filter blur-[128px] opacity-40 transition-colors duration-1000 ease-in-out pointer-events-none"
-        style={{ backgroundColor: activeFlavor.gradientFrom }}
-      />
-      <div 
-        className="absolute bottom-1/4 right-1/4 w-[40rem] h-[40rem] rounded-full mix-blend-screen filter blur-[128px] opacity-30 transition-colors duration-1000 ease-in-out pointer-events-none"
-        style={{ backgroundColor: activeFlavor.gradientTo }}
-      />
-      
-      {/* Mesh/Grid overlay for that 2026 tech aesthetic */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none" />
+    <section className="relative min-h-screen flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 overflow-hidden" dir={language === 'ar' ? 'rtl' : 'ltr'}>
+      {/* Background effects */}
+      <div className="absolute top-20 left-10 w-96 h-96 bg-qwantam-purple/20 rounded-full mix-blend-screen filter blur-[100px] animate-pulse" />
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-qwantam-pink/20 rounded-full mix-blend-screen filter blur-[100px] animate-pulse" />
 
-      <div className="relative z-10 max-w-7xl mx-auto w-full mt-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-          
-          {/* Left Content - Typography & UI */}
+      <div className="relative z-10 max-w-7xl mx-auto w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left Content */}
           <motion.div
             variants={container}
             initial="hidden"
             animate="show"
-            className="space-y-10"
+            className="space-y-8"
           >
-            <motion.div variants={item} className="space-y-4">
-              <span 
-                className="inline-block px-4 py-1.5 rounded-full text-sm font-bold tracking-widest uppercase transition-colors duration-500 border border-white/10 glass-panel shadow-xl"
-                style={{ color: activeFlavor.accentColor, backgroundColor: `${activeFlavor.gradientFrom}20` }}
-              >
+            <motion.div variants={item} className="space-y-2">
+              <span className="text-qwantam-pink font-semibold tracking-widest uppercase text-sm">
                 {t.hero.label}
               </span>
-              
-              <AnimatePresence mode="wait">
-                <motion.h1 
-                  key={activeFlavor.id}
-                  initial={{ opacity: 0, y: 10, filter: 'blur(10px)' }}
-                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                  exit={{ opacity: 0, y: -10, filter: 'blur(10px)' }}
-                  transition={{ duration: 0.4 }}
-                  className="text-6xl sm:text-7xl lg:text-8xl font-black leading-[1.1] tracking-tight"
-                >
-                  <span className="block text-white glow-text drop-shadow-2xl">{t.hero.title[0]}</span>
-                  <span 
-                    className="block bg-clip-text text-transparent pb-2"
-                    style={{ backgroundImage: `linear-gradient(to right, ${activeFlavor.gradientTo}, ${activeFlavor.accentColor})` }}
-                  >
-                    {t.hero.flavors?.[activeFlavor.nameKey as keyof typeof t.hero.flavors] || activeFlavor.nameKey.toUpperCase()}
-                  </span>
-                </motion.h1>
-              </AnimatePresence>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight">
+                {t.hero.title[0]}
+                <span className="gradient-text block">{t.hero.title[1]}</span>
+              </h1>
             </motion.div>
 
             <motion.p
               variants={item}
-              className="text-xl text-gray-300 leading-relaxed max-w-lg font-light"
+              className="text-xl text-gray-300 leading-relaxed max-w-lg"
             >
               {t.hero.description}
             </motion.p>
 
-            {/* Flavor Selector (2026 Style) */}
-            <motion.div variants={item} className="space-y-4">
-              <p className="text-sm font-semibold tracking-widest text-gray-400 uppercase">Select Flavor</p>
-              <div className="flex gap-4">
-                {FLAVORS.map((flavor) => (
-                  <button
-                    key={flavor.id}
-                    onClick={() => setActiveFlavor(flavor)}
-                    className={cn(
-                      "group relative w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-500 overflow-hidden backdrop-blur-md border",
-                      activeFlavor.id === flavor.id 
-                        ? "border-white/50 scale-110 shadow-2xl z-10" 
-                        : "border-white/10 hover:border-white/30 hover:scale-105 opacity-70 hover:opacity-100"
-                    )}
-                  >
-                    {/* Inner glowing core */}
-                    <div 
-                      className="absolute inset-0 opacity-50 transition-opacity group-hover:opacity-80"
-                      style={{ background: `radial-gradient(circle at center, ${flavor.gradientTo} 0%, transparent 70%)` }}
-                    />
-                    <div 
-                      className="w-6 h-6 rounded-full shadow-inner z-10"
-                      style={{ background: `linear-gradient(135deg, ${flavor.gradientFrom}, ${flavor.accentColor})` }}
-                    />
-                    {activeFlavor.id === flavor.id && (
-                      <motion.div
-                        layoutId="activeFlavorRing"
-                        className="absolute inset-[-2px] rounded-2xl border-2"
-                        style={{ borderColor: flavor.accentColor }}
-                        transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                      />
-                    )}
-                  </button>
-                ))}
-              </div>
-            </motion.div>
-
             <motion.div
               variants={item}
-              className="flex flex-col sm:flex-row gap-6 pt-6"
+              className="flex flex-col sm:flex-row gap-4 pt-4"
             >
-              <button
-                className="relative px-8 py-4 rounded-xl text-white font-bold text-lg group overflow-hidden"
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-4 rounded-lg bg-gradient-to-r from-qwantam-purple to-qwantam-pink text-white font-bold text-lg hover:shadow-lg hover:shadow-qwantam-pink/50 transition-all"
               >
-                <div 
-                  className="absolute inset-0 transition-opacity duration-300"
-                  style={{ background: `linear-gradient(to right, ${activeFlavor.gradientFrom}, ${activeFlavor.gradientTo})` }}
-                />
-                <div 
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md"
-                  style={{ background: `linear-gradient(to right, ${activeFlavor.gradientFrom}, ${activeFlavor.gradientTo})` }}
-                />
-                <span className="relative z-10 flex items-center gap-2">
-                  {t.nav.shopNow}
-                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </span>
-              </button>
+                {t.nav.shopNow}
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-4 rounded-lg border-2 border-white/20 text-white font-bold text-lg hover:border-white/40 hover:bg-white/5 transition-all"
+              >
+                {t.nav.learnMore}
+              </motion.button>
+            </motion.div>
+
+            {/* Stats */}
+            <motion.div
+              variants={item}
+              className="flex gap-8 pt-8 border-t border-white/10"
+            >
+              {t.hero.stats.map((stat: { value: string; label: string }, index: number) => (
+                <div key={index}>
+                  <p className="text-3xl font-bold gradient-text">{stat.value}</p>
+                  <p className="text-sm text-gray-400">{stat.label}</p>
+                </div>
+              ))}
             </motion.div>
           </motion.div>
 
-          {/* Right - Product 3D Interaction */}
+          {/* Right - Product Image 3D */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="relative h-[600px] lg:h-[700px] flex items-center justify-center pointer-events-auto"
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="relative h-[500px] sm:h-[600px] lg:h-[700px] flex items-center justify-center -ml-8 sm:ml-0"
           >
-            {/* The 3D Canvas */}
-            <Scene3D flavor={activeFlavor} />
+            <div className="absolute inset-0 bg-gradient-to-b from-qwantam-purple/30 to-qwantam-pink/30 rounded-full blur-[120px]" />
+
+            <motion.div
+              style={{ rotateX, rotateY, transformPerspective: 1000 }}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              whileHover={{ scale: 1.05 }}
+              animate={{ y: [0, -15, 0] }}
+              transition={{ y: { repeat: Infinity, duration: 4, ease: "easeInOut" }, scale: { duration: 0.2 } }}
+              className="relative w-full max-w-sm h-full max-h-[600px] cursor-pointer"
+            >
+              <div className="absolute w-full h-full">
+                {/* Fallback glow if image lacks drop shadow */}
+                <div className="absolute inset-x-10 inset-y-20 bg-qwantam-pink/20 blur-2xl rounded-full" />
+                <Image
+                  src="/images/qwantam-can.png"
+                  alt="Qwantam Energy Drink"
+                  fill
+                  style={{ objectFit: 'contain' }}
+                  className="drop-shadow-2xl z-10"
+                  priority
+                />
+              </div>
+            </motion.div>
           </motion.div>
-          
         </div>
       </div>
     </section>
