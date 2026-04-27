@@ -1,27 +1,32 @@
 import type { Metadata } from 'next'
+import { Cairo, Teko } from 'next/font/google'
 import './globals.css'
 
+const cairo = Cairo({
+  subsets: ['arabic', 'latin'],
+  variable: '--font-cairo',
+  weight: ['400', '500', '600', '700'],
+})
+
+const teko = Teko({
+  subsets: ['latin'],
+  variable: '--font-teko',
+  weight: ['400', '500', '600', '700'],
+})
+
 export const metadata: Metadata = {
-  title: 'Qwantam - The Energy That Keeps You Going',
-  description: 'Premium energy drink with unmatched power and taste',
-  icons: {
-    icon: '/favicon.ico',
-  },
+  title: 'NABT Energy Drink',
+  description: 'Premium date-seeds energy drink landing page with cinematic 3D product presentation.',
 }
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode
-}) {
+}>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
-      </head>
-      <body>{children}</body>
+      <body className={`${cairo.variable} ${teko.variable}`}>{children}</body>
     </html>
   )
 }
