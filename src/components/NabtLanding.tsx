@@ -256,12 +256,13 @@ export default function NabtLanding() {
 
           <div className="grid gap-6">
             <div className="gold-outline overflow-hidden rounded-[30px] border border-[rgba(202,160,75,0.18)] bg-[rgba(9,22,18,0.72)] p-3 sm:p-4">
-              <div className="relative aspect-[10/3] min-h-[180px] overflow-hidden rounded-[22px] bg-[rgba(255,255,255,0.03)] sm:min-h-[220px]">
+              <div className="overflow-hidden rounded-[22px] bg-[rgba(255,255,255,0.03)]">
                 <Image
                   src="/images/nabt-label.jpeg"
                   alt="NABT label artwork details"
-                  fill
-                  className="object-contain object-center"
+                  width={1280}
+                  height={384}
+                  className="h-auto w-full object-contain"
                 />
               </div>
             </div>
