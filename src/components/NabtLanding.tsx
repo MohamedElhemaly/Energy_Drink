@@ -106,6 +106,7 @@ export default function NabtLanding() {
             <div className="display-font text-3xl leading-none text-[var(--nabt-cream)]">NABT</div>
             <div className="hidden items-center gap-6 md:flex">
               <a href="#experience">Experience</a>
+              <a href="#campaign-film">Film</a>
               <a href="#product-story">Product Story</a>
               <a href="#facts">Facts</a>
             </div>
@@ -234,6 +235,55 @@ export default function NabtLanding() {
         </section>
 
         <section
+          id="campaign-film"
+          data-reveal
+          className="px-1 py-8 lg:py-14"
+        >
+          <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+            <div className="max-w-[620px]">
+              <p className="text-xs uppercase tracking-[0.32em] text-[var(--nabt-gold)]">Campaign Film</p>
+              <h2 className="section-title mt-3 text-5xl leading-none text-[var(--nabt-cream)] sm:text-6xl lg:text-7xl">
+                Feel the premium energy before the first sip
+              </h2>
+              <p className="mt-5 text-base leading-8 text-[rgba(246,239,225,0.74)] sm:text-lg">
+                A motion-led moment gives the page a stronger emotional hook, turning the product story into a
+                cinematic brand impression that rewards the scroll.
+              </p>
+              <div className="mt-7 grid gap-3 sm:grid-cols-3">
+                {['Cinematic', 'Premium', 'Natural'].map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-full border border-[rgba(202,160,75,0.18)] bg-[rgba(255,255,255,0.03)] px-4 py-3 text-center text-xs uppercase tracking-[0.22em] text-[var(--nabt-gold)]"
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="group relative overflow-hidden rounded-[30px] border border-[rgba(202,160,75,0.2)] bg-[rgba(9,22,18,0.72)] p-3 shadow-[0_42px_110px_rgba(0,0,0,0.34)] sm:p-4">
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(202,160,75,0.18),transparent_28%),linear-gradient(315deg,rgba(246,239,225,0.1),transparent_24%)] opacity-80" />
+              <div className="relative overflow-hidden rounded-[22px] bg-[#06100c]">
+                <video
+                  className="aspect-video h-full w-full object-cover"
+                  src="/video.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  controls
+                  preload="metadata"
+                />
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-[linear-gradient(180deg,rgba(7,17,13,0.58),transparent)]" />
+                <div className="pointer-events-none absolute bottom-4 left-4 rounded-full border border-[rgba(202,160,75,0.24)] bg-[rgba(8,22,16,0.68)] px-4 py-2 text-[10px] uppercase tracking-[0.26em] text-[var(--nabt-gold)] backdrop-blur-md sm:text-xs">
+                  NABT in motion
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section
           id="experience"
           data-reveal
           className="grid gap-6 px-1 py-8 lg:grid-cols-[0.95fr_1.05fr] lg:py-14"
@@ -345,6 +395,19 @@ export default function NabtLanding() {
           </div>
         </section>
       </main>
+
+      <footer className="mx-auto w-full max-w-[1600px] px-4 pb-8 sm:px-6 lg:px-10">
+        <div className="footer-copyright rounded-[22px] border border-[rgba(202,160,75,0.16)] bg-[rgba(255,255,255,0.03)] px-5 py-4 text-center text-sm text-[rgba(246,239,225,0.7)] shadow-[0_24px_70px_rgba(0,0,0,0.22)]">
+          <p>
+            <a
+              href="https://mohamedelhemaly.github.io/portfolio/"
+              className="transition-colors hover:text-[var(--nabt-gold)]"
+            >
+              &copy; 2025 Mohamed El-hemaly.All Rights Reserved.
+            </a>
+          </p>
+        </div>
+      </footer>
     </div>
   )
 }
