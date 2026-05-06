@@ -40,6 +40,33 @@ const brandPoints = [
   'Photography-driven layout that feels stronger for presentations and pitches.',
 ]
 
+const socialLinks = [
+  {
+    label: 'Facebook',
+    href: 'https://www.facebook.com/profile.php?id=61589500852277&sfnsn=wa',
+    icon: (
+      <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5">
+        <path
+          fill="currentColor"
+          d="M14.2 8.6V7.1c0-.7.5-.9.9-.9h2.4V2.1L14.2 2c-3.7 0-5.4 2.2-5.4 5.2v1.4H6v4.3h2.8V22h4.6v-9.1h3.4l.5-4.3h-3.1Z"
+        />
+      </svg>
+    ),
+  },
+  {
+    label: 'Instagram',
+    href: 'https://www.instagram.com/nabt2026?utm_source=qr&igsh=ZzUzb25raTFoYXQ3',
+    icon: (
+      <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5">
+        <path
+          fill="currentColor"
+          d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2Zm0 2A3.8 3.8 0 0 0 4 7.8v8.4A3.8 3.8 0 0 0 7.8 20h8.4a3.8 3.8 0 0 0 3.8-3.8V7.8A3.8 3.8 0 0 0 16.2 4H7.8Zm8.7 2.2a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6ZM12 7.2a4.8 4.8 0 1 1 0 9.6 4.8 4.8 0 0 1 0-9.6Zm0 2a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6Z"
+        />
+      </svg>
+    ),
+  },
+]
+
 export default function NabtLanding() {
   const rootRef = useRef<HTMLDivElement>(null)
 
@@ -397,15 +424,43 @@ export default function NabtLanding() {
       </main>
 
       <footer className="mx-auto w-full max-w-[1600px] px-4 pb-8 sm:px-6 lg:px-10">
-        <div className="footer-copyright rounded-[22px] border border-[rgba(202,160,75,0.16)] bg-[rgba(255,255,255,0.03)] px-5 py-4 text-center text-sm text-[rgba(246,239,225,0.7)] shadow-[0_24px_70px_rgba(0,0,0,0.22)]">
-          <p>
+        <div className="rounded-[28px] border border-[rgba(202,160,75,0.2)] bg-[linear-gradient(135deg,rgba(246,239,225,0.08),rgba(255,255,255,0.025))] px-5 py-6 shadow-[0_28px_90px_rgba(0,0,0,0.28)] backdrop-blur-xl sm:px-7">
+          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+            <div className="max-w-[480px]">
+              <p className="display-font text-4xl leading-none text-[var(--nabt-cream)] sm:text-5xl">NABT</p>
+              <p className="mt-2 text-sm leading-6 text-[rgba(246,239,225,0.68)]">
+                Premium energy drink crafted with a natural edge and a refined visual identity.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-3">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  title={social.label}
+                  className="group flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(202,160,75,0.24)] bg-[rgba(7,17,13,0.42)] text-[var(--nabt-cream)] transition-all duration-300 hover:-translate-y-1 hover:border-[var(--nabt-gold)] hover:bg-[var(--nabt-gold)] hover:text-[#10251d] focus:outline-none focus:ring-2 focus:ring-[var(--nabt-gold)] focus:ring-offset-2 focus:ring-offset-[#07110d]"
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-6 flex flex-col gap-3 border-t border-[rgba(202,160,75,0.16)] pt-5 text-sm text-[rgba(246,239,225,0.64)] sm:flex-row sm:items-center sm:justify-between">
+            <p>&copy; 2026 NABT. All Rights Reserved.</p>
             <a
               href="https://mohamedelhemaly.github.io/portfolio/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="transition-colors hover:text-[var(--nabt-gold)]"
             >
-              &copy; 2025 Mohamed El-hemaly.All Rights Reserved.
+              Designed by Mohamed El-hemaly
             </a>
-          </p>
+          </div>
         </div>
       </footer>
     </div>
